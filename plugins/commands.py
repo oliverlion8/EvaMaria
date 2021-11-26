@@ -36,21 +36,21 @@ async def start(client, message):
         await db.add_user(message.from_user.id, message.from_user.first_name)
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
-        buttons = [[
-            InlineKeyboardButton('➕ Add Me To Your Groups ➕', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
-            ],[
-            InlineKeyboardButton('🔍 Search', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('🤖 Updates', url='https://t.me/EvaMariaUpdates')
-            ],[
-            InlineKeyboardButton('ℹ️ Help', callback_data='help'),
-            InlineKeyboardButton('😊 About', callback_data='about')
-        ]]
-        reply_markup = InlineKeyboardMarkup(buttons)
-        await message.reply_photo(
-            photo=random.choice(PICS),
-            caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
-            reply_markup=reply_markup,
-            parse_mode='html'
+      #  buttons = [[
+           # InlineKeyboardButton('➕ Add Me To Your Groups ➕', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+           # ],[
+           # InlineKeyboardButton('🔍 Search', switch_inline_query_current_chat=''),
+           # InlineKeyboardButton('🤖 Updates', url='https://t.me/EvaMariaUpdates')
+           # ],[
+           # InlineKeyboardButton('ℹ️ Help', callback_data='help'),
+           # InlineKeyboardButton('😊 About', callback_data='about')
+        #]]
+        #reply_markup = InlineKeyboardMarkup(buttons)
+         await message.reply_sticker(
+            #photo=random.choice(PICS),
+            sticker="CAACAgUAAxkBAAFb_v5hoJxp3KIdukzCBmwzmC0F7S8MiAACzgUAAp3YiVRCx9XzHB9G4iIE"
+            #reply_markup=reply_markup,
+            #parse_mode='html'
         )
         return
     if AUTH_CHANNEL and not await is_subscribed(client, message):
@@ -77,21 +77,21 @@ async def start(client, message):
             )
         return
     if len(message.command) ==2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
-        buttons = [[
-            InlineKeyboardButton('➕ Add Me To Your Groups ➕', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
-            ],[
-            InlineKeyboardButton('🔍 Search', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('🤖 Updates', url='https://t.me/EvaMariaUpdates')
-            ],[
-            InlineKeyboardButton('ℹ️ Help', callback_data='help'),
-            InlineKeyboardButton('😊 About', callback_data='about')
-        ]]
-        reply_markup = InlineKeyboardMarkup(buttons)
-        await message.reply_photo(
-            photo=random.choice(PICS),
-            caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
-            reply_markup=reply_markup,
-            parse_mode='html'
+        #buttons = [[
+            #InlineKeyboardButton('➕ Add Me To Your Groups ➕', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+            #],[
+            #InlineKeyboardButton('🔍 Search', switch_inline_query_current_chat=''),
+            #InlineKeyboardButton('🤖 Updates', url='https://t.me/EvaMariaUpdates')
+            #],[
+            #InlineKeyboardButton('ℹ️ Help', callback_data='help'),
+            #InlineKeyboardButton('😊 About', callback_data='about')
+        #]]
+        #eply_markup = InlineKeyboardMarkup(buttons)
+        await message.reply_sticker(
+            #photo=random.choice(PICS),
+            sticker="CAACAgUAAxkBAAFb_v5hoJxp3KIdukzCBmwzmC0F7S8MiAACzgUAAp3YiVRCx9XzHB9G4iIE"
+            #reply_markup=reply_markup,
+            #parse_mode='html'
         )
         return
     file_id = message.command[1]
@@ -232,6 +232,6 @@ async def delete_all_index_confirm(bot, message):
     await message.answer()
     await message.message.edit('Succesfully Deleted All The Indexed Files.')
 
-@Client.on_message(filters.command('start') & filters.command('help'))
+@Client.on_message(filters.private & filters.command('start') & filters.command('help'))
 async def echo(bot, message):
     await message.delete()
