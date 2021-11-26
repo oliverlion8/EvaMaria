@@ -45,8 +45,7 @@ logger = logging.getLogger(__name__)
             InlineKeyboardButton('😊 About', callback_data='about')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
-        
-    if message.from_user.id not in ADMINS:
+   if message.from_user.id not in ADMINS:
         await message.delete()
         await message.reply_to_message.delete()
         )
