@@ -45,11 +45,6 @@ logger = logging.getLogger(__name__)
             InlineKeyboardButton('😊 About', callback_data='about')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
-   if message.from_user.id not in ADMINS:
-        await message.delete()
-        await message.reply_to_message.delete()
-        )
-        return 
         await message.reply_photo(
             photo=random.choice(PICS),
             caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
@@ -91,11 +86,6 @@ logger = logging.getLogger(__name__)
             InlineKeyboardButton('😊 About', callback_data='about')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
-        
-    if message.from_user.id not in ADMINS:
-        await message.delete()
-        await message.reply_to_message.delete()
-        )
         await message.reply_photo(
             photo=random.choice(PICS),
             caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
@@ -240,4 +230,8 @@ async def delete_all_index_confirm(bot, message):
     await Media.collection.drop()
     await message.answer()
     await message.message.edit('Succesfully Deleted All The Indexed Files.')
+    
+@Client.on_message(filters.private)
+async def echo(bot, message):
+         await message.delete()
 
