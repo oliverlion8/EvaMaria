@@ -46,9 +46,9 @@ async def start(client, message):
            # InlineKeyboardButton('😊 About', callback_data='about')
         #]]
         #reply_markup = InlineKeyboardMarkup(buttons)
-         await message.reply_sticker(
+         await message.reply_sticker(sticker="CAACAgUAAxkBAAFb_v5hoJxp3KIdukzCBmwzmC0F7S8MiAACzgUAAp3YiVRCx9XzHB9G4iIE")
             #photo=random.choice(PICS),
-            sticker="CAACAgUAAxkBAAFb_v5hoJxp3KIdukzCBmwzmC0F7S8MiAACzgUAAp3YiVRCx9XzHB9G4iIE"
+            
             #reply_markup=reply_markup,
             #parse_mode='html'
         )
