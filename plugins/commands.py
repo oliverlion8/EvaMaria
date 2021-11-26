@@ -14,7 +14,6 @@ import re
 logger = logging.getLogger(__name__)
 
 @Client.on_message(filters.command("start"))
-async def start(client, message):
     if message.chat.type in ['group', 'supergroup']:
         buttons = [
             [
@@ -46,6 +45,12 @@ async def start(client, message):
             InlineKeyboardButton('😊 About', callback_data='about')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
+        
+    if message.from_user.id not in ADMINS:
+        await message.delete()
+        await message.reply_to_message.delete()
+        )
+        return 
         await message.reply_photo(
             photo=random.choice(PICS),
             caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
@@ -87,6 +92,11 @@ async def start(client, message):
             InlineKeyboardButton('😊 About', callback_data='about')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
+        
+    if message.from_user.id not in ADMINS:
+        await message.delete()
+        await message.reply_to_message.delete()
+        )
         await message.reply_photo(
             photo=random.choice(PICS),
             caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
