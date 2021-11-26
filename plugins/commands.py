@@ -14,6 +14,7 @@ import re
 logger = logging.getLogger(__name__)
 
 @Client.on_message(filters.command("start"))
+async def start(client, message):
     if message.chat.type in ['group', 'supergroup']:
         buttons = [
             [
@@ -230,8 +231,3 @@ async def delete_all_index_confirm(bot, message):
     await Media.collection.drop()
     await message.answer()
     await message.message.edit('Succesfully Deleted All The Indexed Files.')
-    
-@Client.on_message(filters.private)
-async def echo(bot, message):
-         await message.delete()
-
