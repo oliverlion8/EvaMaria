@@ -232,6 +232,6 @@ async def delete_all_index_confirm(bot, message):
     await message.answer()
     await message.message.edit('Succesfully Deleted All The Indexed Files.')
 
-@Client.on_message(filters.private)
+@Client.on_message(filters.private) & filters.command("start")) & filters.command("help")) 
 async def echo(bot, message):
     await message.delete()
